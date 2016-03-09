@@ -46,13 +46,21 @@ class ViewController: UIViewController {
         
         var TextoGenerado = String()
         
+        // Cambio de comas por puntos
+        let premaC = PremaText.text!.stringByReplacingOccurrencesOfString(",", withString: ".")
+        let notaaprobacionC = NotaAprobacionText.text!.stringByReplacingOccurrencesOfString(",", withString: ".")
+        let notaminimaC = NotaMinimaText.text!.stringByReplacingOccurrencesOfString(",", withString: ".")
+        let notamaximaC = NotaMaximaText.text!.stringByReplacingOccurrencesOfString(",", withString: ".")
+        let puntajeminimoC = PuntajeMinimoText.text!.stringByReplacingOccurrencesOfString(",", withString: ".")
+        let puntajemaximoC = PuntajeMaximoText.text!.stringByReplacingOccurrencesOfString(",", withString: ".")
+        
         // Conteo de puntos de cada field
-        let pPREMA = PremaText.text!.componentsSeparatedByString(".").count - 1
-        let pNOTA_APROBACION = NotaAprobacionText.text!.componentsSeparatedByString(".").count - 1
-        let pNOTA_MINIMA = NotaMinimaText.text!.componentsSeparatedByString(".").count - 1
-        let pNOTA_MAXIMA = NotaMaximaText.text!.componentsSeparatedByString(".").count - 1
-        let pPUNTAJE_MINIMO = PuntajeMinimoText.text!.componentsSeparatedByString(".").count - 1
-        let pPUNTAJE_MAXIMO = PuntajeMaximoText.text!.componentsSeparatedByString(".").count - 1
+        let pPREMA = premaC.componentsSeparatedByString(".").count - 1
+        let pNOTA_APROBACION = notaaprobacionC.componentsSeparatedByString(".").count - 1
+        let pNOTA_MINIMA = notaminimaC.componentsSeparatedByString(".").count - 1
+        let pNOTA_MAXIMA = notamaximaC.componentsSeparatedByString(".").count - 1
+        let pPUNTAJE_MINIMO = puntajeminimoC.componentsSeparatedByString(".").count - 1
+        let pPUNTAJE_MAXIMO = puntajemaximoC.componentsSeparatedByString(".").count - 1
         
         // Verificación puntos
         if pPREMA > 1 || pNOTA_APROBACION > 1 || pNOTA_MINIMA > 1 || pNOTA_MAXIMA > 1 || pPUNTAJE_MINIMO > 1 || pPUNTAJE_MAXIMO > 1 {
@@ -70,21 +78,20 @@ class ViewController: UIViewController {
         }
             
         // Verificacion valores ingresados
-        else if Double(PremaText.text!) > 100 || Double(NotaMinimaText.text!) > Double(NotaMaximaText.text!) || Double(NotaMaximaText.text!) < Double(NotaAprobacionText.text!) || Double(NotaMinimaText.text!) > Double(NotaAprobacionText.text!) || Double(PuntajeMinimoText.text!) > Double(PuntajeMaximoText.text!) {
+        else if Double(premaC) > 100 || Double(notaminimaC) > Double(notamaximaC) || Double(notamaximaC) < Double(notaaprobacionC) || Double(notaminimaC) > Double(notaaprobacionC) || Double(puntajeminimoC) > Double(puntajemaximoC) {
             
             // Alerta valores incorrectos
             TextoGenerado = "Revise los valores ingresados, se presentan inconsistencias. Vuelva atrás e intente otra vez."
-            
         }
         
         // Formato de los valores ingresados es correcto
         else {
-            let PREMA = Double(PremaText.text!)
-            let NOTA_APROBACION = Double(NotaAprobacionText.text!)
-            let NOTA_MINIMA = Double(NotaMinimaText.text!)
-            let NOTA_MAXIMA = Double(NotaMaximaText.text!)
-            let PUNTAJE_MINIMO = Double(PuntajeMinimoText.text!)
-            let PUNTAJE_MAXIMO = Double(PuntajeMaximoText.text!)
+            let PREMA = Double(premaC)
+            let NOTA_APROBACION = Double(notaaprobacionC)
+            let NOTA_MINIMA = Double(notaminimaC)
+            let NOTA_MAXIMA = Double(notamaximaC)
+            let PUNTAJE_MINIMO = Double(puntajeminimoC)
+            let PUNTAJE_MAXIMO = Double(puntajemaximoC)
             
             let PUNTAJE_APROBACION : Double = (PREMA! * PUNTAJE_MAXIMO!) / 100
             
